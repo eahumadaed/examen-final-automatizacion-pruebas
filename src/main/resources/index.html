@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReservaLab | Talleres de automatizacion</title>
+    <style>
+        :root { color-scheme: light; font-family: Arial, sans-serif; }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; background: #f4f6f8; color: #17202a; }
+        header { background: #16324f; color: white; padding: 22px max(24px, calc((100% - 980px) / 2)); }
+        header p { margin: 5px 0 0; color: #dbe9f5; }
+        main { max-width: 980px; margin: 0 auto; padding: 42px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+        h1, h2 { margin-top: 0; }
+        .intro { padding-top: 18px; }
+        .intro h2 { font-size: 34px; line-height: 1.1; }
+        .intro p { color: #4d5d6c; line-height: 1.6; }
+        .meta { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+        .meta span { border-left: 4px solid #e3a008; background: white; padding: 10px 13px; font-size: 14px; }
+        form { background: white; border: 1px solid #d9e0e7; padding: 26px; border-radius: 6px; box-shadow: 0 12px 30px rgba(22, 50, 79, .08); }
+        label { display: block; margin-bottom: 16px; font-weight: 700; }
+        input, select { width: 100%; margin-top: 7px; padding: 11px; border: 1px solid #aeb9c4; border-radius: 4px; font: inherit; }
+        button { width: 100%; padding: 12px; border: 0; border-radius: 4px; background: #0b6e4f; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+        button:hover { background: #08563e; }
+        #result { min-height: 26px; margin: 16px 0 0; font-weight: 700; }
+        .success { color: #0b6e4f; }
+        .error { color: #b42318; }
+        @media (max-width: 720px) { main { grid-template-columns: 1fr; padding-top: 26px; } .intro h2 { font-size: 29px; } }
+    </style>
+</head>
+<body>
+<header>
+    <strong>ReservaLab</strong>
+    <p>Demostracion verificable de automatizacion de pruebas</p>
+</header>
+<main>
+    <section class="intro">
+        <h2>Reserva un taller practico</h2>
+        <p>Selecciona una sesion y confirma tus datos. Este mismo flujo es validado por pruebas unitarias, de integracion y de aceptacion.</p>
+        <div class="meta">
+            <span id="environment">Ambiente: {{ENVIRONMENT}}</span>
+            <span id="deployment-color">Slot: {{COLOR}}</span>
+            <span id="version">Version: {{VERSION}}</span>
+        </div>
+    </section>
+    <form id="reservation-form">
+        <h2>Nueva reserva</h2>
+        <label>Nombre
+            <input id="customer" name="customer" required autocomplete="name">
+        </label>
+        <label>Correo
+            <input id="email" name="email" type="email" required autocomplete="email">
+        </label>
+        <label>Taller
+            <select id="workshop" name="workshop">
+                <option>JUnit</option>
+                <option>Selenium</option>
+                <option>CI/CD</option>
+            </select>
+        </label>
+        <button id="submit-reservation" type="submit">Confirmar reserva</button>
+        <p id="result" role="status" aria-live="polite"></p>
+    </form>
+</main>
+<script>
+    const form = document.querySelector('#reservation-form');
+    const result = document.querySelector('#result');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        result.className = '';
+        result.textContent = 'Procesando...';
+        const response = await fetch('/api/reservations', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams(new FormData(form))
+        });
+        const data = await response.json();
+        if (response.ok) {
+            result.className = 'success';
+            result.textContent = `${data.message}. Numero ${data.id}`;
+            form.reset();
+        } else {
+            result.className = 'error';
+            result.textContent = data.error;
+        }
+    });
+</script>
+</body>
+</html>
+
