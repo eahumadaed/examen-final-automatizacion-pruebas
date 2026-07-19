@@ -11,9 +11,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 
 public final class ReservaLabServer implements AutoCloseable {
     private final HttpServer server;
+    private final ExecutorService executor;
     private final ReservationService reservations;
     private final String environment;
     private final String color;
@@ -25,7 +27,8 @@ public final class ReservaLabServer implements AutoCloseable {
         this.color = color;
         this.version = version;
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
-        this.server.setExecutor(Executors.newCachedThreadPool());
+        this.executor = Executors.newCachedThreadPool();
+        this.server.setExecutor(executor);
         this.server.createContext("/", this::handleHome);
         this.server.createContext("/api/health", this::handleHealth);
         this.server.createContext("/api/reservations", this::handleReservations);
@@ -42,6 +45,7 @@ public final class ReservaLabServer implements AutoCloseable {
     @Override
     public void close() {
         server.stop(0);
+        executor.shutdownNow();
     }
 
     private void handleHome(HttpExchange exchange) throws IOException {
