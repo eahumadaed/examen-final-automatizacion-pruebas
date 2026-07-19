@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   build-and-test:
-    name: Build + unitarias + integracion
+    name: Build + unitarias + integración
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar codigo
+      - name: Descargar código
         uses: actions/checkout@v7
 
       - name: Configurar Java 17
@@ -38,18 +38,18 @@ jobs:
             target/failsafe-reports/
             target/site/surefire-report.html
 
-      - name: Publicar aplicacion empaquetada
+      - name: Publicar aplicación empaquetada
         uses: actions/upload-artifact@v7
         with:
           name: reserva-lab-jar
           path: target/reserva-lab.jar
 
   acceptance-tests:
-    name: Acceptance tests Selenium
+    name: Prueba de aceptación web
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
-      - name: Descargar codigo
+      - name: Descargar código
         uses: actions/checkout@v7
 
       - name: Configurar Java 17
@@ -59,40 +59,40 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Empaquetar aplicacion
+      - name: Empaquetar aplicación
         run: mvn -B -DskipTests package
 
-      - name: Levantar ambiente de aceptacion
+      - name: Levantar ambiente de aceptación
         shell: pwsh
-        run: ./scripts/blue-green-deploy.ps1 deploy -Version "acceptance-${{ github.run_number }}" -RuntimeDirectory .runtime-acceptance
+        run: ./deployment/blue-green-deploy.ps1 deploy -Version "acceptance-${{ github.run_number }}" -RuntimeDirectory .runtime-acceptance
 
-      - name: Ejecutar flujo de usuario con Selenium
+      - name: Ejecutar flujo principal de usuario
         shell: pwsh
         run: |
           $baseUrl = Get-Content .runtime-acceptance/current-url.txt -Raw
           mvn -B -Pacceptance verify "-Dacceptance.baseUrl=$($baseUrl.Trim())"
 
-      - name: Publicar evidencia de aceptacion
+      - name: Publicar evidencia de aceptación
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: evidencia-selenium
+          name: evidencia-aceptacion
           path: |
             target/acceptance-evidence/
             target/failsafe-reports/
             .runtime-acceptance/deployment-history.log
 
-      - name: Cerrar ambiente de aceptacion
+      - name: Cerrar ambiente de aceptación
         if: always()
         shell: pwsh
-        run: ./scripts/blue-green-deploy.ps1 cleanup -RuntimeDirectory .runtime-acceptance
+        run: ./deployment/blue-green-deploy.ps1 cleanup -RuntimeDirectory .runtime-acceptance
 
   deploy-test:
     name: Deploy Blue-Green + rollback
     runs-on: ubuntu-latest
     needs: acceptance-tests
     steps:
-      - name: Descargar codigo
+      - name: Descargar código
         uses: actions/checkout@v7
 
       - name: Configurar Java 17
@@ -102,32 +102,32 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Empaquetar aplicacion
+      - name: Empaquetar aplicación
         run: mvn -B -DskipTests package
 
-      - name: Desplegar version inicial en Blue
+      - name: Desplegar versión inicial en Blue
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path target/deployment-evidence -Force | Out-Null
-          ./scripts/blue-green-deploy.ps1 deploy -Version "1.0.${{ github.run_number }}" | Tee-Object target/deployment-evidence/01-deploy-blue.log
+          ./deployment/blue-green-deploy.ps1 deploy -Version "1.0.${{ github.run_number }}" | Tee-Object target/deployment-evidence/01-deploy-blue.log
           $url = (Get-Content .runtime/current-url.txt -Raw).Trim()
           Invoke-RestMethod "$url/api/health" | ConvertTo-Json | Set-Content target/deployment-evidence/02-health-blue.json
 
-      - name: Desplegar nueva version en Green
+      - name: Desplegar nueva versión en Green
         shell: pwsh
         run: |
-          ./scripts/blue-green-deploy.ps1 deploy -Version "1.1.${{ github.run_number }}" | Tee-Object target/deployment-evidence/03-deploy-green.log
+          ./deployment/blue-green-deploy.ps1 deploy -Version "1.1.${{ github.run_number }}" | Tee-Object target/deployment-evidence/03-deploy-green.log
           $url = (Get-Content .runtime/current-url.txt -Raw).Trim()
           Invoke-RestMethod "$url/api/health" | ConvertTo-Json | Set-Content target/deployment-evidence/04-health-green.json
-          ./scripts/blue-green-deploy.ps1 status | Tee-Object target/deployment-evidence/05-status-before-rollback.log
+          ./deployment/blue-green-deploy.ps1 status | Tee-Object target/deployment-evidence/05-status-before-rollback.log
 
       - name: Ejecutar rollback y verificar Blue
         shell: pwsh
         run: |
-          ./scripts/blue-green-deploy.ps1 rollback | Tee-Object target/deployment-evidence/06-rollback.log
+          ./deployment/blue-green-deploy.ps1 rollback | Tee-Object target/deployment-evidence/06-rollback.log
           $url = (Get-Content .runtime/current-url.txt -Raw).Trim()
           Invoke-RestMethod "$url/api/health" | ConvertTo-Json | Set-Content target/deployment-evidence/07-health-after-rollback.json
-          ./scripts/blue-green-deploy.ps1 status | Tee-Object target/deployment-evidence/08-status-after-rollback.log
+          ./deployment/blue-green-deploy.ps1 status | Tee-Object target/deployment-evidence/08-status-after-rollback.log
           Copy-Item .runtime/deployment-history.log target/deployment-evidence/09-deployment-history.log
 
       - name: Publicar evidencia de despliegue y rollback
@@ -140,5 +140,5 @@ jobs:
       - name: Cerrar slots de prueba
         if: always()
         shell: pwsh
-        run: ./scripts/blue-green-deploy.ps1 cleanup
+        run: ./deployment/blue-green-deploy.ps1 cleanup
 

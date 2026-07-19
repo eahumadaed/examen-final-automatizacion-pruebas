@@ -67,7 +67,7 @@ class ReservaLabApplicationIT {
     @Test
     @DisplayName("La API responde 400 ante datos invalidos")
     void rejectsInvalidReservationThroughApi() throws Exception {
-        HttpResponse<String> response = post("customer=Edinson&email=correo-invalido&workshop=JUnit");
+        HttpResponse<String> response = post("customer=Edinson&email=correo-invalido&workshop=Pruebas+unitarias");
 
         assertEquals(400, response.statusCode());
         assertTrue(response.body().contains("formato valido"));

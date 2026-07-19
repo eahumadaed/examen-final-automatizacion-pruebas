@@ -1,24 +1,19 @@
-EJECUCION REMOTA VERIFICADA
-===========================
-Repositorio: https://github.com/eahumadaed/examen-final-automatizacion-pruebas-edinson-ahumada
-Workflow: CI/CD Examen Final
-Run ID: 29669395721
-URL: https://github.com/eahumadaed/examen-final-automatizacion-pruebas-edinson-ahumada/actions/runs/29669395721
-Commit: 9488476b1385270bd4cebefc3f3b895e37643b18
-Rama: main
-Resultado: success
-Inicio UTC: 2026-07-19T01:57:07Z
-Fin UTC: 2026-07-19T01:58:35Z
+CI/CD EXAMEN FINAL - RESUMEN VERIFICADO
 
-JOBS
-----
-Build + unitarias + integracion: success (20 s)
-Acceptance tests Selenium: success (31 s)
-Deploy Blue-Green + rollback: success (24 s)
+Repositorio: https://github.com/eahumadaed/examen-final-automatizacion-pruebas
+Rama: develop
+Commit: 2cd3e2e6714674bf6a01c3c4fed3bfd2fcf2e48e
+Ejecución: 29670479897
+URL: https://github.com/eahumadaed/examen-final-automatizacion-pruebas/actions/runs/29670479897
+Resultado general: success
 
-ARTEFACTOS
-----------
-reportes-junit
-reserva-lab-jar
-evidencia-selenium
-evidencia-blue-green-rollback
+Etapas:
+- Build + unitarias + integración: success (24 s)
+- Prueba de aceptación web: success (42 s)
+- Deploy Blue-Green + rollback: success (20 s)
+
+Artefactos publicados:
+- reportes-junit
+- reserva-lab-jar
+- evidencia-aceptacion
+- evidencia-blue-green-rollback

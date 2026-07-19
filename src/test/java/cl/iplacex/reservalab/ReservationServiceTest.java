@@ -19,19 +19,19 @@ class ReservationServiceTest {
     @Test
     @DisplayName("Crea una reserva valida y asigna un identificador")
     void createsValidReservation() {
-        Reservation reservation = service.create("Edinson Ahumada", "EDINSON@EJEMPLO.CL", "Selenium");
+        Reservation reservation = service.create("Edinson Ahumada", "EDINSON@EJEMPLO.CL", "Calidad de software");
 
         assertEquals(1L, reservation.id());
         assertEquals("Edinson Ahumada", reservation.customer());
         assertEquals("edinson@ejemplo.cl", reservation.email());
-        assertEquals("Selenium", reservation.workshop());
+        assertEquals("Calidad de software", reservation.workshop());
         assertEquals(1, service.count());
     }
 
     @Test
     @DisplayName("Incrementa el identificador sin compartir estado entre pruebas")
     void incrementsReservationIdentifier() {
-        Reservation first = service.create("Ana Soto", "ana@example.cl", "JUnit");
+        Reservation first = service.create("Ana Soto", "ana@example.cl", "Pruebas unitarias");
         Reservation second = service.create("Luis Diaz", "luis@example.cl", "CI/CD");
 
         assertEquals(1L, first.id());
@@ -43,7 +43,7 @@ class ReservationServiceTest {
     @DisplayName("Rechaza un nombre vacio")
     void rejectsBlankCustomer() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> service.create("  ", "persona@example.cl", "JUnit"));
+                () -> service.create("  ", "persona@example.cl", "Pruebas unitarias"));
 
         assertEquals("El nombre es obligatorio", exception.getMessage());
         assertEquals(0, service.count());
@@ -53,7 +53,7 @@ class ReservationServiceTest {
     @DisplayName("Rechaza un correo con formato invalido")
     void rejectsInvalidEmail() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> service.create("Persona", "correo-invalido", "JUnit"));
+                () -> service.create("Persona", "correo-invalido", "Pruebas unitarias"));
 
         assertTrue(exception.getMessage().contains("formato valido"));
     }
