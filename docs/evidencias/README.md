@@ -13,4 +13,4 @@ Este directorio reúne capturas y registros obtenidos en ejecuciones reales del 
 
 GitHub Actions publica cuatro artefactos: reportes JUnit, aplicación empaquetada, evidencia de aceptación y evidencia Blue-Green con rollback.
 
-Ejecución verificada: [CI/CD Examen Final, run 29670479897](https://github.com/eahumadaed/examen-final-automatizacion-pruebas/actions/runs/29670479897).
+Ejecución verificada: [CI/CD Examen Final, run 29671238172](https://github.com/eahumadaed/examen-final-automatizacion-pruebas/actions/runs/29671238172).
