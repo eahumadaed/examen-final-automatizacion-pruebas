@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -30,7 +30,7 @@ jobs:
 
       - name: Publicar reportes JUnit
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reportes-junit
           path: |
@@ -39,7 +39,7 @@ jobs:
             target/site/surefire-report.html
 
       - name: Publicar aplicacion empaquetada
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reserva-lab-jar
           path: target/reserva-lab.jar
@@ -50,10 +50,10 @@ jobs:
     needs: build-and-test
     steps:
       - name: Descargar codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -74,7 +74,7 @@ jobs:
 
       - name: Publicar evidencia de aceptacion
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: evidencia-selenium
           path: |
@@ -93,10 +93,10 @@ jobs:
     needs: acceptance-tests
     steps:
       - name: Descargar codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -132,7 +132,7 @@ jobs:
 
       - name: Publicar evidencia de despliegue y rollback
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: evidencia-blue-green-rollback
           path: target/deployment-evidence/
