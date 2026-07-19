@@ -49,14 +49,14 @@ class ReservationAcceptanceTest {
         driver.get(baseUrl);
         driver.findElement(By.id("customer")).sendKeys("Edinson Ahumada");
         driver.findElement(By.id("email")).sendKeys("edinson@example.cl");
-        new Select(driver.findElement(By.id("workshop"))).selectByVisibleText("Selenium");
+        new Select(driver.findElement(By.id("workshop"))).selectByVisibleText("Calidad de software");
         driver.findElement(By.id("submit-reservation")).click();
 
         String message = new WebDriverWait(driver, Duration.ofSeconds(8))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#result.success")))
                 .getText();
         assertTrue(message.contains("Reserva confirmada"));
-        assertTrue(message.contains("Numero 1"));
+        assertTrue(message.contains("Número 1"));
 
         Path evidenceDirectory = Path.of("target", "acceptance-evidence");
         Files.createDirectories(evidenceDirectory);

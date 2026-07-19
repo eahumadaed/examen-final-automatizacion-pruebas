@@ -2,20 +2,21 @@
 
 ## Ramas
 
-- `main`: contiene la version estable y entregable.
+- `main`: contiene la versión estable y entregable.
 - `develop`: integra los avances que ya fueron revisados.
-- `feature/automatizacion-pruebas`: incorpora JUnit, integracion HTTP y Selenium.
+- `feature/automatizacion-pruebas`: incorpora las pruebas unitarias, de integración y de aceptación.
 - `feature/pipeline-blue-green`: incorpora CI/CD, despliegue y rollback.
+- `feature/ajustes-presentacion`: reúne las correcciones finales de documentación y evidencias.
 
 ## Flujo aplicado
 
 1. El proyecto base se crea en `main`.
-2. Se abre `develop` desde la version estable.
+2. Se abre `develop` desde la versión estable.
 3. Cada grupo de cambios se desarrolla en una rama `feature/*`.
-4. Las features se integran en `develop` mediante merge explicito.
-5. La version final se integra desde `develop` hacia `main`.
+4. Las ramas de funcionalidad se integran en `develop` mediante un merge explícito.
+5. La versión final se integra desde `develop` hacia `main`.
 
-Este flujo separa el codigo estable del trabajo en curso y deja trazabilidad en el historial. Para una nueva funcionalidad se debe crear otra rama desde `develop`, abrir un pull request y ejecutar el pipeline antes de fusionarla.
+Este flujo separa el código estable del trabajo en curso y mantiene la trazabilidad en el historial. Para una nueva funcionalidad se crea otra rama desde `develop`, se abre un pull request y se ejecuta el pipeline antes de fusionarla.
 
 ## Comandos de referencia
 
@@ -29,4 +30,3 @@ git merge --no-ff feature/nueva-funcionalidad
 git switch main
 git merge --no-ff develop
 ```
-

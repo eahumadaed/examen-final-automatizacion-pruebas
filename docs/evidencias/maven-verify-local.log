@@ -1,7 +1,7 @@
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------------< cl.iplacex:reserva-lab >-----------------------
-[INFO] Building ReservaLab - Examen Final Automatizacion de Pruebas 1.0.0
+[INFO] Building ReservaLab - Examen Final Automatizaci�n de Pruebas 1.0.0
 [INFO]   from pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -29,7 +29,7 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running cl.iplacex.reservalab.ReservationServiceTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s -- in cl.iplacex.reservalab.ReservationServiceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in cl.iplacex.reservalab.ReservationServiceTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -46,7 +46,7 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running cl.iplacex.reservalab.ReservaLabApplicationIT
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.700 s -- in cl.iplacex.reservalab.ReservaLabApplicationIT
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.807 s -- in cl.iplacex.reservalab.ReservaLabApplicationIT
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -54,9 +54,35 @@
 [INFO] 
 [INFO] 
 [INFO] --- failsafe:3.5.2:verify (integration-tests) @ reserva-lab ---
+[INFO] 
+[INFO] >>> surefire-report:3.5.2:report (default-cli) > [surefire]test @ reserva-lab >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ reserva-lab ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ reserva-lab ---
+[INFO] Nothing to compile - all classes are up to date.
+[WARNING] Overwriting artifact's file from I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target\reserva-lab.jar to I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ reserva-lab ---
+[INFO] skip non existing resourceDirectory I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ reserva-lab ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ reserva-lab ---
+[INFO] Skipping execution of surefire because it has already been run for this configuration
+[INFO] 
+[INFO] <<< surefire-report:3.5.2:report (default-cli) < [surefire]test @ reserva-lab <<<
+[INFO] 
+[INFO] 
+[INFO] --- surefire-report:3.5.2:report (default-cli) @ reserva-lab ---
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[WARNING] Unable to locate Test Source XRef to link to -- DISABLED
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.646 s
-[INFO] Finished at: 2026-07-18T21:46:31-04:00
+[INFO] Total time:  11.404 s
+[INFO] Finished at: 2026-07-18T22:34:15-04:00
 [INFO] ------------------------------------------------------------------------

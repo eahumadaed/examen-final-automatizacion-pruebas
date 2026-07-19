@@ -6,7 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class ReservationService {
-    private static final List<String> WORKSHOPS = List.of("JUnit", "Selenium", "CI/CD");
+    private static final List<String> WORKSHOPS = List.of("Pruebas unitarias", "Calidad de software", "CI/CD");
 
     private final AtomicLong sequence = new AtomicLong();
     private final List<Reservation> reservations = new CopyOnWriteArrayList<>();
@@ -40,4 +40,3 @@ public final class ReservationService {
         return value.trim();
     }
 }
-
