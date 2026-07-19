@@ -2,30 +2,30 @@
 
 ## Objetivo
 
-El despliegue mantiene dos slots independientes: **Blue** en el puerto 8081 y **Green** en el puerto 8082. Solo se promueve un candidato cuando su endpoint `/api/health` responde `UP`. El slot anterior sigue disponible para ejecutar rollback inmediato.
+El despliegue mantiene dos slots independientes: **Blue** en el puerto 8081 y **Green** en el puerto 8082. Solo se promueve una versión candidata cuando su endpoint `/api/health` responde con el estado `UP`. El slot anterior queda disponible para ejecutar un rollback inmediato.
 
 ## Etapas
 
-1. El pipeline compila y ejecuta pruebas unitarias y de integracion.
-2. Levanta un ambiente temporal y ejecuta la prueba de aceptacion con Selenium.
-3. Despliega la primera version en Blue y valida su salud.
-4. Despliega la version candidata en Green y valida su salud antes de promoverla.
-5. Ejecuta rollback hacia Blue y vuelve a consultar el health check.
-6. Publica logs, respuestas JSON e historial como artefacto de GitHub Actions.
+1. El pipeline compila y ejecuta las pruebas unitarias y de integración.
+2. Levanta un ambiente temporal y ejecuta la prueba de aceptación web.
+3. Despliega la primera versión en Blue y valida su estado.
+4. Despliega la versión candidata en Green y comprueba su estado antes de promoverla.
+5. Ejecuta el rollback hacia Blue y vuelve a consultar el health check.
+6. Publica logs, respuestas JSON e historial como artefactos de GitHub Actions.
 
 ## Uso local
 
 ```powershell
 mvn clean package
-./scripts/blue-green-deploy.ps1 deploy -Version 1.0.0
-./scripts/blue-green-deploy.ps1 deploy -Version 1.1.0
-./scripts/blue-green-deploy.ps1 status
-./scripts/blue-green-deploy.ps1 rollback
-./scripts/blue-green-deploy.ps1 cleanup
+./deployment/blue-green-deploy.ps1 deploy -Version 1.0.0
+./deployment/blue-green-deploy.ps1 deploy -Version 1.1.0
+./deployment/blue-green-deploy.ps1 status
+./deployment/blue-green-deploy.ps1 rollback
+./deployment/blue-green-deploy.ps1 cleanup
 ```
 
-El directorio `.runtime` contiene el estado, los PID, logs por slot e historial de promociones. El script no cambia el slot activo si el candidato no supera el health check.
+El directorio `.runtime` contiene el estado, los PID, los logs de cada slot y el historial de promociones. El slot activo no cambia si la versión candidata falla en el health check.
 
 ## Criterio de rollback
 
-Se vuelve al slot anterior cuando una validacion posterior al despliegue detecta errores funcionales, indisponibilidad o degradacion. Como el proceso anterior permanece activo, el cambio de `current-url.txt` es inmediato y no requiere reconstruir el artefacto.
+Se vuelve al slot anterior cuando una validación posterior al despliegue detecta errores funcionales, indisponibilidad o degradación. Como el proceso anterior permanece activo, el cambio de `current-url.txt` es inmediato y no requiere reconstruir el artefacto.

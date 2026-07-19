@@ -1,8 +1,11 @@
 target/
-.runtime/
+.runtime*/
 .idea/
 .vscode/
 *.iml
 *.log
 !docs/evidencias/*.log
 tmp/
+/Edinson_Ahumada.docx
+/output/
+/scripts/

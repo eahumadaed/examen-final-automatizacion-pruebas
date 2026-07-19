@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ReservaLab | Talleres de automatizacion</title>
+    <title>ReservaLab | Talleres prácticos</title>
     <style>
         :root { color-scheme: light; font-family: Arial, sans-serif; }
         * { box-sizing: border-box; }
@@ -31,16 +31,16 @@
 <body>
 <header>
     <strong>ReservaLab</strong>
-    <p>Demostracion verificable de automatizacion de pruebas</p>
+    <p>Práctica de calidad y entrega continua</p>
 </header>
 <main>
     <section class="intro">
-        <h2>Reserva un taller practico</h2>
-        <p>Selecciona una sesion y confirma tus datos. Este mismo flujo es validado por pruebas unitarias, de integracion y de aceptacion.</p>
+        <h2>Reserva un taller práctico</h2>
+        <p>Selecciona una sesión y confirma tus datos. El flujo contempla validaciones unitarias, de integración y de aceptación.</p>
         <div class="meta">
             <span id="environment">Ambiente: {{ENVIRONMENT}}</span>
             <span id="deployment-color">Slot: {{COLOR}}</span>
-            <span id="version">Version: {{VERSION}}</span>
+            <span id="version">Versión: {{VERSION}}</span>
         </div>
     </section>
     <form id="reservation-form">
@@ -53,8 +53,8 @@
         </label>
         <label>Taller
             <select id="workshop" name="workshop">
-                <option>JUnit</option>
-                <option>Selenium</option>
+                <option>Pruebas unitarias</option>
+                <option>Calidad de software</option>
                 <option>CI/CD</option>
             </select>
         </label>
@@ -77,7 +77,7 @@
         const data = await response.json();
         if (response.ok) {
             result.className = 'success';
-            result.textContent = `${data.message}. Numero ${data.id}`;
+            result.textContent = `${data.message}. Número ${data.id}`;
             form.reset();
         } else {
             result.className = 'error';
@@ -87,4 +87,3 @@
 </script>
 </body>
 </html>
-

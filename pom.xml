@@ -7,7 +7,7 @@
     <groupId>cl.iplacex</groupId>
     <artifactId>reserva-lab</artifactId>
     <version>1.0.0</version>
-    <name>ReservaLab - Examen Final Automatizacion de Pruebas</name>
+    <name>ReservaLab - Examen Final Automatización de Pruebas</name>
     <description>Aplicacion Java con pruebas automatizadas y pipeline CI/CD Blue-Green.</description>
 
     <properties>
@@ -126,4 +126,3 @@
         </profile>
     </profiles>
 </project>
-
