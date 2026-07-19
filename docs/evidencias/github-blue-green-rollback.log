@@ -1,24 +1,24 @@
 ===== 01-deploy-blue.log =====
-DEPLOY_SUCCESS active=blue previous=none version=1.0.9 port=8081 status=UP
+DEPLOY_SUCCESS active=blue previous=none version=1.0.1 port=8081 status=UP
 
 ===== 02-health-blue.json =====
 {
   "status": "UP",
   "environment": "test",
   "color": "blue",
-  "version": "1.0.9",
+  "version": "1.0.1",
   "reservations": 0
 }
 
 ===== 03-deploy-green.log =====
-DEPLOY_SUCCESS active=green previous=blue version=1.1.9 port=8082 status=UP
+DEPLOY_SUCCESS active=green previous=blue version=1.1.1 port=8082 status=UP
 
 ===== 04-health-green.json =====
 {
   "status": "UP",
   "environment": "test",
   "color": "green",
-  "version": "1.1.9",
+  "version": "1.1.1",
   "reservations": 0
 }
 
@@ -35,7 +35,7 @@ ROLLBACK_SUCCESS active=blue previous=green status=UP
   "status": "UP",
   "environment": "test",
   "color": "blue",
-  "version": "1.0.9",
+  "version": "1.0.1",
   "reservations": 0
 }
 
@@ -45,7 +45,7 @@ slot=blue port=8081 process=running health=UP
 slot=green port=8082 process=running health=UP
 
 ===== 09-deployment-history.log =====
-2026-07-19T02:38:50Z DEPLOY_SUCCESS active=blue previous=none version=1.0.9 port=8081
-2026-07-19T02:38:51Z DEPLOY_SUCCESS active=green previous=blue version=1.1.9 port=8082
-2026-07-19T02:38:52Z ROLLBACK_SUCCESS active=blue previous=green port=8081
+2026-07-19T03:07:54Z DEPLOY_SUCCESS active=blue previous=none version=1.0.1 port=8081
+2026-07-19T03:07:56Z DEPLOY_SUCCESS active=green previous=blue version=1.1.1 port=8082
+2026-07-19T03:07:57Z ROLLBACK_SUCCESS active=blue previous=green port=8081
 

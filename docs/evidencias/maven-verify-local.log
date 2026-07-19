@@ -6,7 +6,7 @@
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ reserva-lab ---
-[INFO] Deleting I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target
+[INFO] Deleting I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\target
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ reserva-lab ---
 [INFO] Copying 1 resource from src\main\resources to target\classes
@@ -16,7 +16,7 @@
 [INFO] Compiling 4 source files with javac [debug release 17] to target\classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ reserva-lab ---
-[INFO] skip non existing resourceDirectory I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\src\test\resources
+[INFO] skip non existing resourceDirectory I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ reserva-lab ---
 [INFO] Recompiling the module because of changed dependency.
@@ -37,7 +37,7 @@
 [INFO] 
 [INFO] 
 [INFO] --- jar:3.4.2:jar (default-jar) @ reserva-lab ---
-[INFO] Building jar: I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target\reserva-lab.jar
+[INFO] Building jar: I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\target\reserva-lab.jar
 [INFO] 
 [INFO] --- failsafe:3.5.2:integration-test (integration-tests) @ reserva-lab ---
 [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
@@ -62,10 +62,10 @@
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ reserva-lab ---
 [INFO] Nothing to compile - all classes are up to date.
-[WARNING] Overwriting artifact's file from I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target\reserva-lab.jar to I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\target\classes
+[WARNING] Overwriting artifact's file from I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\target\reserva-lab.jar to I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\target\classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ reserva-lab ---
-[INFO] skip non existing resourceDirectory I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas-edinson-ahumada\src\test\resources
+[INFO] skip non existing resourceDirectory I:\U_Pruebas\pruebas unitarias 2\examen-final-automatizacion-pruebas\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ reserva-lab ---
 [INFO] Recompiling the module because of changed dependency.
