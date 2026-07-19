@@ -4,5 +4,5 @@ target/
 .vscode/
 *.iml
 *.log
+!docs/evidencias/*.log
 tmp/
-
